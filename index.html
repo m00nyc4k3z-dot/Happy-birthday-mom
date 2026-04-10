@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #ffe6eb, #ffd6e0);
+  font-family: 'Playfair Display', serif;
+  overflow: hidden;
+}
+
+/* Envelope */
+.envelope {
+  width: 320px;
+  height: 220px;
+  background: #ff4d6d;
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: 0.5s;
+}
+
+.envelope:hover {
+  transform: scale(1.05);
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 160px solid transparent;
+  border-right: 160px solid transparent;
+  border-bottom: 110px solid #ff758f;
+}
+
+/* Letter */
+.letter {
+  display: none;
+  text-align: center;
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 400px;
+  animation: fadeIn 1s ease;
+}
+
+/* Heart screen */
+.heart-screen {
+  display: none;
+  text-align: center;
+}
+
+/* Heart */
+.heart {
+  width: 220px;
+  height: 220px;
+  background: #ff4d6d;
+  position: relative;
+  transform: rotate(-45deg);
+  margin: auto;
+  animation: heartbeat 1.2s infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 220px;
+  height: 220px;
+  background: #ff4d6d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -110px;
+  left: 0;
+}
+
+.heart::after {
+  left: 110px;
+  top: 0;
+}
+
+/* Heart text */
+.heart-text {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  color: white;
+  width: 180px;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: 'Dancing Script', cursive;
+}
+
+/* Photo inside heart */
+.heart img {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 2px solid white;
+}
+
+/* Button */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Sparkles */
+.sparkle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: float 4s linear infinite;
+  opacity: 0.7;
+}
+
+/* Animations */
+@keyframes heartbeat {
+  0%, 100% { transform: rotate(-45deg) scale(1); }
+  50% { transform: rotate(-45deg) scale(1.1); }
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="envelope" onclick="openEnvelope()"></div>
+
+<div class="letter" id="letter">
+  <h2>💌 Dear Mom</h2>
+  <p>Click next for something special 💖</p>
+  <button onclick="showHeart()">Next 💕</button>
+</div>
+
+<div class="heart-screen" id="heartScreen">
+  <div class="heart">
+    <div class="heart-text">
+      Dear Mom, this is from Ayanat. Thank you for taking care of me and looking out for me all these years.
+      I hope you live a stress-free, wonderful, happy, long, fun, exciting life!
+      My love for you never changes 💖
+    </div>
+
+    <img src="photo.jpg">
+  </div>
+</div>
+
+<script>
+function openEnvelope() {
+  document.querySelector(".envelope").style.display = "none";
+  document.getElementById("letter").style.display = "block";
+}
+
+function showHeart() {
+  document.getElementById("letter").style.display = "none";
+  document.getElementById("heartScreen").style.display = "block";
+
+  // Sparkles
+  for (let i = 0; i < 40; i++) {
+    let s = document.createElement("div");
+    s.classList.add("sparkle");
+    s.style.left = Math.random() * window.innerWidth + "px";
+    s.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(s);
+  }
+}
+</script>
+
+</body>
+</html>
